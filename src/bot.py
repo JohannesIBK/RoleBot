@@ -32,7 +32,7 @@ plugins = [
 class RoleBot(commands.Bot):
     def __init__(self, config):
         super().__init__(
-            command_prefix=config["prefix"],
+            command_prefix=commands.when_mentioned_or(config["prefix"]),
             intents=intents,
             allowed_mentions=allowed_mentions,
             case_insensitive=True)
