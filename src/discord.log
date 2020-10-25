@@ -1,0 +1,7 @@
+2020-10-25 23:53:05,465:ERROR:discord: Traceback (most recent call last):
+  File "/mnt/d/Programming/discord/rolemessenger/src/bot.py", line 54, in on_ready
+    self.load_extension(plugin)
+  File "/home/johannesibk/.local/lib/python3.9/site-packages/discord/ext/commands/bot.py", line 658, in load_extension
+    raise errors.ExtensionAlreadyLoaded(name)
+discord.ext.commands.errors.ExtensionAlreadyLoaded: Extension 'plugins.Plugin' is already loaded.
+
