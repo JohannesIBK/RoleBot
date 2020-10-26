@@ -6,7 +6,7 @@ from logging.handlers import RotatingFileHandler
 import discord
 from discord.ext import commands
 
-from src.db import db
+from db import db
 
 
 handler = RotatingFileHandler(filename='discord.log', maxBytes=1024 * 10, encoding='utf-8', mode='w')
