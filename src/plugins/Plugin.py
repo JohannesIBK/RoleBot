@@ -14,7 +14,9 @@ class Plugin(cmds.Cog):
         if len(before.roles) == len(after.roles):
             return
 
-        role = list(set(before.roles) - set(after.roles)) or list(set(after.roles) - set(before.roles))
+        role = list(set(after.roles) - set(before.roles))
+        if not role:
+            return
         config = db.get(self.bot, before.guild.id, "roles")
 
         if str(role[0].id) in config:
