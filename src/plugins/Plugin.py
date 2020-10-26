@@ -25,7 +25,7 @@ class Plugin(cmds.Cog):
 
 
     @cmds.Cog.listener()
-    async def on_cog_command_error(self, ctx, error):
+    async def on_command_error(self, ctx, error):
         if isinstance(error, cmds.RoleNotFound):
             await ctx.send("Die Rolle konnte nicht gefunden werden.")
         if isinstance(error, cmds.MissingRequiredArgument):
@@ -50,7 +50,7 @@ class Plugin(cmds.Cog):
         if str(role.id) in config:
             return await ctx.send("Diese Rolle wird bereits verwendet.")
 
-        config[role.id] = message
+        config[str(role.id)] = message
         db.set(self.bot, ctx.guild.id, "roles", config)
 
         await ctx.send("Die Rolle wurde hinzugefügt.")
@@ -61,7 +61,7 @@ class Plugin(cmds.Cog):
         if str(role.id) not in config:
             return await ctx.send("Diese Rolle wird nicht verwendet.")
 
-        config[role.id] = message
+        config[str(role.id)] = message
         db.set(self.bot, ctx.guild.id, "roles", config)
 
         await ctx.send("Die Rolle wurde editiert.")
@@ -72,7 +72,7 @@ class Plugin(cmds.Cog):
         if str(role.id) not in config:
             return await ctx.send("Diese Rolle wird nicht verwendet.")
 
-        config.pop(role.id)
+        config.pop(str(role.id))
         db.set(self.bot, ctx.guild.id, "roles", config)
 
         await ctx.send("Die Rolle wurde entfernt.")
@@ -80,10 +80,11 @@ class Plugin(cmds.Cog):
     @role.command()
     async def check(self, ctx: cmds.Context, role: discord.Role):
         config = db.get(self.bot, ctx.guild.id, "roles")
+        print(config)
         if str(role.id) not in config:
             return await ctx.send("Diese Rolle wird nicht verwendet.")
 
-        await ctx.send(config[role.id])
+        await ctx.send(config[str(role.id)])
 
     @role.command()
     async def help(self, ctx: cmds.Context):
