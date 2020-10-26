@@ -91,7 +91,7 @@ class Plugin(cmds.Cog):
                        "**role add** < `Rolle` > < `Nachricht` >\n"
                        "**role edit** < `Rolle` > < `Nachricht` >\n"
                        "**role remove** < `Rolle` >\n"
-                       "**role check** < `Rolle` >"
+                       "**role check** < `Rolle` >\n"
                        "**role help **")
 
 
