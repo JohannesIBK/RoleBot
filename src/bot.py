@@ -47,6 +47,13 @@ class RoleBot(commands.Bot):
         print(f"Starting as {self.user}")
         logger.info(datetime.utcnow().strftime(f"Started at %H:%M:%S - %d/%m/%Y as {self.user}"))
 
+        if self.config["status"]:
+            await bot.change_presence(
+                activity=discord.Activity(
+                    type=discord.ActivityType.playing,
+                    name=self.config["status"]),
+                status=discord.Status.online)
+
         for plugin in plugins:
             try:
                 self.load_extension(plugin)
